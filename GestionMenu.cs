@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExerciceC__GestionCompteBancaire;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ExerciceC__GestionnaireCompteBancaire
 {
-    internal class GestionMenu
+    public class GestionMenu
     {
         public static void AfficherMenu()
         {
@@ -20,6 +21,7 @@ namespace ExerciceC__GestionnaireCompteBancaire
                 {
                     Console.WriteLine
                         (
+                        Environment.NewLine +
                         "[I] Voir les informations sur le titulaire du compte" + Environment.NewLine +
                         "[CS] Compte courant - Consulter le solde" + Environment.NewLine +
                         "[CD] Compte courant - Déposer des fonds" + Environment.NewLine +
@@ -29,15 +31,17 @@ namespace ExerciceC__GestionnaireCompteBancaire
                         "[ER] Compte épargne - Retirer des fonds" + Environment.NewLine +
                         "[X] Quitter"
                         );
-                    string saisieUtilisateur = Console.ReadLine();
-                    GestionChoixUtilisateur(saisieUtilisateur);
+                    Console.WriteLine(Environment.NewLine + "Naviguez dans le menu en recopiant les raccourcies entre [...].");
+                    GestionChoixUtilisateur();
                     break;
                 }
             }
         }
 
-        public static void GestionChoixUtilisateur(string saisieUtilisateur)
+        public static void GestionChoixUtilisateur()
         {
+            string saisieUtilisateur = Console.ReadLine();
+
             switch (saisieUtilisateur)
             {
                 case "I":
@@ -62,11 +66,11 @@ namespace ExerciceC__GestionnaireCompteBancaire
                     Console.WriteLine("Compte épargne - Retirer des fonds");
                     break;
                 case "X":
-                    Console.WriteLine("Quitter");
+                    QuitterApplication.Quitter();
                     break;
                 default:
                     Console.WriteLine("Veuillez saisir un choix possible dans le menu");
-                    AfficherMenu();
+                    GestionChoixUtilisateur();
                     break;
             }
         }
